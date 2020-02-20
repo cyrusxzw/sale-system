@@ -16,32 +16,32 @@ export class Sneaker extends Entity {
   @property({
     type: 'string',
   })
-  purchase_date?: string;
+  size?: string;
 
   @property({
     type: 'string',
   })
-  sale_date?: string;
+  buy_time?: String;
+
+  @property({
+    type: 'string',
+  })
+  sold_time?: String;
+
+  @property({
+    type: 'string',
+  })
+  buy_price?: String;
+
+  @property({
+    type: 'string',
+  })
+  sold_price?: String;
 
   @property({
     type: 'string',
   })
   buyer?: string;
-
-  @property({
-    type: 'string',
-  })
-  retail_price?: string;
-
-  @property({
-    type: 'string',
-  })
-  resell_price?: string;
-
-  @property({
-    type: 'number',
-  })
-  quantity?: number;
 
   constructor(data?: Partial<Sneaker>) {
     super(data);
