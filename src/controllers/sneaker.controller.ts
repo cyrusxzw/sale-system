@@ -69,31 +69,18 @@ export class SneakerController {
     return await this.sneakerRepository.find(filter);
   }
 
-  @patch('/sneakers', {
+  @patch('/sneakers/{id}', {
     responses: {
-      '200': {
-        description: 'sneaker PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
+      '204': {
+        description: 'Order PATCH success',
       },
     },
   })
-  async updateAll(
+  async updateById(
+    @param({name: 'id', in: 'path'}) id: string,
     @requestBody() sneaker: Sneaker,
-    @param.query.object('where', getWhereSchemaFor(Sneaker)) where?: Where,
-  ): Promise<Count> {
-    return await this.sneakerRepository.updateAll(sneaker, where);
-  }
-
-  @get('/sneakers/{id}', {
-    responses: {
-      '200': {
-        description: 'sneaker model instance',
-        content: {'application/json': {schema: {'x-ts-type': Sneaker}}},
-      },
-    },
-  })
-  async findById(@param.path.string('id') id: string): Promise<Sneaker> {
-    return await this.sneakerRepository.findById(id);
+  ): Promise<void> {
+    await this.sneakerRepository.updateById(id, sneaker);
   }
 
   @del('/sneakers/{id}', {
